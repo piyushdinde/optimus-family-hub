@@ -47,9 +47,14 @@ export default function Page() {
             </span>
           </div>
           <p className="text-slate-400 text-[11px]">Interactive Prototype</p>
-          <a href="/discovery" className="inline-block mt-1 text-[11px] font-bold text-[#8aa0ff] hover:text-white transition-colors">
-            View 7 discovery hooks →
-          </a>
+          <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1">
+            <a href="/discovery" className="text-[11px] font-bold text-[#8aa0ff] hover:text-white transition-colors">
+              7 discovery hooks →
+            </a>
+            <a href="/validation" className="text-[11px] font-bold text-[#5eead4] hover:text-white transition-colors">
+              5 validation experiments →
+            </a>
+          </div>
         </div>
 
         {/* Centre: app switcher, pulled up into the top bar */}
