@@ -3,16 +3,24 @@ import { useState } from 'react'
 import PhoneFrame from '@/components/PhoneFrame'
 import { userScreens } from '@/components/UserScreens'
 import { memberScreens } from '@/components/MemberScreens'
-import type { ScreenProps } from '@/components/UserScreens'
+import { adultScreens } from '@/components/AdultScreens'
+import type { ScreenProps, Screen } from '@/components/UserScreens'
 
-type AppType = 'user' | 'member'
+type AppType = 'user' | 'child' | 'adult'
+
+const APPS: { id: AppType; icon: string; label: string; sub: string; journey: string; screens: Screen[] }[] = [
+  { id: 'user',  icon: '👨‍👩‍👧', label: 'Main User App',  sub: 'Account Holder App',          journey: 'Account Holder Journey', screens: userScreens },
+  { id: 'child', icon: '👦',     label: 'Children App',    sub: 'Teen / Child (Aarav)',        journey: 'Child Journey',          screens: memberScreens },
+  { id: 'adult', icon: '🧑‍🤝‍🧑', label: 'Family Member',   sub: 'Spouse · Parent (Rahul)',     journey: 'Family Member Journey',  screens: adultScreens },
+]
 
 export default function Page() {
   const [app, setApp] = useState<AppType>('user')
   const [idx, setIdx] = useState(0)
   const [showGrid, setShowGrid] = useState(false)
 
-  const screens = app === 'user' ? userScreens : memberScreens
+  const current = APPS.find(a => a.id === app)!
+  const screens = current.screens
   const CurrentScreen = screens[idx].component
 
   const switchApp = (a: AppType) => { setApp(a); setIdx(0); setShowGrid(false) }
@@ -46,25 +54,25 @@ export default function Page() {
       </div>
 
       {/* ── App Switcher ────────────────────────────────────────────────── */}
-      <div className="flex gap-2 mt-3 mb-4 bg-white/5 border border-white/10 rounded-2xl p-1">
-        <button
-          onClick={() => switchApp('user')}
-          className={`px-5 py-2 rounded-xl text-sm font-bold transition-all ${
-            app === 'user'
-              ? 'bg-white text-slate-900 shadow-lg'
-              : 'text-slate-400 hover:text-white'
-          }`}>
-          👨‍👩‍👧 Parent App
-        </button>
-        <button
-          onClick={() => switchApp('member')}
-          className={`px-5 py-2 rounded-xl text-sm font-bold transition-all ${
-            app === 'member'
-              ? 'bg-white text-slate-900 shadow-lg'
-              : 'text-slate-400 hover:text-white'
-          }`}>
-          👦 Teen App (Aarav)
-        </button>
+      <div className="flex flex-wrap justify-center gap-2 mt-3 mb-4 bg-white/5 border border-white/10 rounded-2xl p-1.5">
+        {APPS.map(a => (
+          <button key={a.id}
+            onClick={() => switchApp(a.id)}
+            className={`px-4 py-2 rounded-xl text-left transition-all ${
+              app === a.id ? 'bg-white shadow-lg' : 'hover:bg-white/5'
+            }`}>
+            <div className={`flex items-center gap-1.5 text-[13px] font-bold ${
+              app === a.id ? 'text-slate-900' : 'text-slate-300'
+            }`}>
+              <span>{a.icon}</span>{a.label}
+            </div>
+            <div className={`text-[10px] font-medium ${
+              app === a.id ? 'text-slate-400' : 'text-slate-500'
+            }`}>
+              {a.sub}
+            </div>
+          </button>
+        ))}
       </div>
 
       {/* ── Main layout: screen label + phone + screen list ─────────────── */}
@@ -73,7 +81,7 @@ export default function Page() {
         {/* Left: nav column */}
         <div className="hidden lg:flex flex-col gap-1.5 w-48 pt-6 flex-shrink-0">
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2 px-2">
-            {app === 'user' ? 'Parent Journey' : 'Teen Journey'}
+            {current.journey}
           </p>
           {screens.map((s, i) => (
             <button key={s.id}
@@ -140,7 +148,7 @@ export default function Page() {
       {showGrid && (
         <div className="lg:hidden w-full max-w-sm px-4 pb-8">
           <p className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider mb-3 text-center">
-            {app === 'user' ? 'Parent Journey' : 'Teen Journey'}
+            {current.journey}
           </p>
           <div className="grid grid-cols-2 gap-2">
             {screens.map((s, i) => (
@@ -162,7 +170,7 @@ export default function Page() {
       {/* ── Footer ─────────────────────────────────────────────────────── */}
       <div className="pb-6 text-center">
         <p className="text-slate-600 text-[11px]">
-          Optimus · Zeta Senior PM Assignment · 18 interactive screens · Built with Next.js
+          Optimus · Zeta Senior PM Assignment · 3 apps · 26 interactive screens · Built with Next.js
         </p>
       </div>
     </div>
