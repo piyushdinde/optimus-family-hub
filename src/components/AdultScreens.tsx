@@ -8,7 +8,7 @@ import type { ScreenProps, Screen } from './UserScreens'
 
 const VIOLET = '#7C3AED'
 
-// Adult-app bottom nav (violet accent to distinguish from teen's emerald)
+// Adult-app bottom nav (violet accent to distinguish from child's emerald)
 const AdultBottomNav = ({ active }: { active: 'home' | 'household' | 'spends' | 'me' }) => (
   <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-slate-100 flex justify-around pt-2 pb-5">
     {[
@@ -35,22 +35,22 @@ const A1_Invite: React.FC<ScreenProps> = ({ onNext }) => (
     <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
       <div className="text-6xl mb-6">💞</div>
       <h1 className="text-2xl font-black text-white mb-3 leading-tight">
-        Priya Sharma added<br />you to her household
+        Akash Sharma added you<br />as a cardholder
       </h1>
       <div className="text-4xl font-black mb-1" style={{ color: '#A78BFA', letterSpacing: '-1px' }}>
         Optimus
       </div>
       <p className="text-violet-300 text-sm mb-8 leading-relaxed">
-        Get your own card and shared household<br />spending — set up in 2 minutes.
+        Get your own card on Akash's Optimus<br />account - set up in 2 minutes.
       </p>
 
       <div className="w-full bg-white/10 border border-white/20 rounded-2xl p-4 mb-6 text-left">
         <div className="text-[10px] text-violet-300 font-bold uppercase tracking-wider mb-3">What you get</div>
         {[
-          { icon: '💳', text: 'Your own debit card — full limits' },
-          { icon: '🏡', text: 'Shared household budget & visibility' },
+          { icon: '💳', text: 'Your own supplementary card' },
           { icon: '🔄', text: 'Instant UPI · rahul@optimus' },
-          { icon: '🪪', text: 'Your own KYC — fully your card' },
+          { icon: '🪪', text: 'Quick identity check (KYC)' },
+          { icon: '👁️', text: 'Shared household spend visibility' },
         ].map(f => (
           <div key={f.text} className="flex items-center gap-3 mb-2.5 last:mb-0">
             <span className="text-lg">{f.icon}</span>
@@ -84,14 +84,14 @@ const A2_Welcome: React.FC<ScreenProps> = ({ onNext, onBack }) => (
         </div>
         <h1 className="text-3xl font-black text-white mb-2">Welcome,<br />Rahul!</h1>
         <p className="text-violet-300 text-sm leading-relaxed mb-8">
-          You're an adult member — so this is fully <strong className="text-white">your</strong> card, with your own KYC. Priya only sees what you choose to share.
+          You get your own <strong className="text-white">supplementary card</strong> on Akash's Optimus account. He funds it, sets your limits, and can manage it anytime.
         </p>
 
         <div className="w-full space-y-3 mb-8">
           {[
-            { icon: '💳', title: 'Your own card, full control', sub: 'Trust-based soft limits — not hard blocks' },
-            { icon: '🏡', title: 'Shared household budget', sub: 'Track rent, groceries & bills together' },
-            { icon: '🪪', title: 'Independent KYC', sub: 'You verify yourself — no guardian needed' },
+            { icon: '💳', title: 'Your supplementary card', sub: 'Spends from Akash’s Optimus account' },
+            { icon: '🪪', title: 'Quick identity check', sub: 'Verify yourself once to activate' },
+            { icon: '👁️', title: 'Shared household visibility', sub: 'Track rent, groceries & bills together' },
           ].map(f => (
             <div key={f.title}
               className="flex items-center gap-4 bg-white/10 border border-white/10 rounded-2xl p-4 text-left">
@@ -114,7 +114,7 @@ const A2_Welcome: React.FC<ScreenProps> = ({ onNext, onBack }) => (
   </div>
 )
 
-// ─── Screen A3: Adult KYC (own KYC — the key differentiator) ──────────────────
+// ─── Screen A3: Identity check + PIN (supplementary cardholder) ───────────────
 const A3_KYC: React.FC<ScreenProps> = ({ onNext, onBack }) => (
   <div className="flex flex-col h-full bg-slate-50">
     <StatusBar />
@@ -122,12 +122,12 @@ const A3_KYC: React.FC<ScreenProps> = ({ onNext, onBack }) => (
 
     <div className="flex-1 overflow-y-auto px-4 pb-6">
       <p className="text-xs text-slate-500 mt-1 mb-5">
-        As an adult, you complete your <strong>own full KYC</strong> — your card isn't guardian-controlled.
+        A quick identity check (KYC) activates your <strong>supplementary card</strong> on Akash's account.
       </p>
 
       {/* KYC steps */}
       <div className="bg-white rounded-2xl px-4 py-1 shadow-sm mb-4">
-        <SectionLabel className="mt-3">KYC Verification</SectionLabel>
+        <SectionLabel className="mt-3">Identity Verification</SectionLabel>
         {[
           { label: 'Aadhaar', value: 'XXXX XXXX 7421', done: true },
           { label: 'PAN', value: 'ABCPS••••K', done: true },
@@ -161,7 +161,7 @@ const A3_KYC: React.FC<ScreenProps> = ({ onNext, onBack }) => (
       </div>
 
       <InfoBox color="blue">
-        🪪 <strong>You're in control.</strong> Because you're an adult, Priya cannot freeze or set hard limits on your card. She only sees shared-household spends you opt into.
+        🪪 <strong>How it works.</strong> This is a supplementary card on Akash's Optimus account. Akash funds it, sets your spending limits, and can freeze it anytime. Your identity verification stays your own.
       </InfoBox>
 
       <div className="mt-5">
@@ -184,11 +184,11 @@ const A4_Activated: React.FC<ScreenProps> = ({ onNext }) => (
       <div className="text-center py-6">
         <div className="text-6xl mb-3">🎉</div>
         <h2 className="text-2xl font-black text-slate-900 mb-1">Card Activated!</h2>
-        <p className="text-sm text-slate-500">Your Optimus card is live with full limits.</p>
+        <p className="text-sm text-slate-500">Your supplementary card is live and ready.</p>
       </div>
 
       <div className="mb-5">
-        <DebitCard name="RAHUL SHARMA" balance="₹12,400" balanceLabel="Your balance" last4="5530" label="Spouse" />
+        <DebitCard name="RAHUL SHARMA" balance="₹50,000" balanceLabel="Monthly limit · spends from Akash’s account" last4="5530" label="Supplementary" />
       </div>
 
       {/* UPI chip */}
@@ -206,9 +206,10 @@ const A4_Activated: React.FC<ScreenProps> = ({ onNext }) => (
       <div className="bg-white rounded-2xl px-4 py-3 shadow-sm mb-4">
         {[
           { l: 'Per transaction', v: '₹25,000' },
-          { l: 'Daily limit', v: '₹50,000' },
-          { l: 'Monthly limit', v: '₹2,00,000' },
-          { l: 'Limit type', v: 'Soft · trust-based' },
+          { l: 'Daily limit', v: '₹25,000' },
+          { l: 'Monthly limit', v: '₹50,000' },
+          { l: 'Approval needed above', v: '₹10,000' },
+          { l: 'Funded by', v: 'Akash Sharma' },
         ].map(r => (
           <div key={r.l} className="flex justify-between py-2 border-b border-slate-100 last:border-0 text-sm">
             <span className="text-slate-400">{r.l}</span>
@@ -217,8 +218,8 @@ const A4_Activated: React.FC<ScreenProps> = ({ onNext }) => (
         ))}
       </div>
 
-      <InfoBox color="emerald">
-        ✅ Unlike a teen card, there are <strong>no category blocks</strong>. These soft limits are defaults you and Priya can adjust together anytime.
+      <InfoBox color="blue">
+        ℹ️ Your card spends from Akash's Optimus account within these limits. Akash can adjust limits, set category controls, or freeze the card anytime from his app.
       </InfoBox>
 
       <div className="space-y-2.5 mt-5">
@@ -236,7 +237,7 @@ const A4_Activated: React.FC<ScreenProps> = ({ onNext }) => (
 )
 
 // ─── Screen A5: Adult Home ───────────────────────────────────────────────────
-const A5_Home: React.FC<ScreenProps> = ({ onNext, goTo }) => (
+const A5_Home: React.FC<ScreenProps> = ({ goTo }) => (
   <div className="flex flex-col h-full bg-slate-50 relative">
     <StatusBar />
 
@@ -250,7 +251,15 @@ const A5_Home: React.FC<ScreenProps> = ({ onNext, goTo }) => (
       </div>
 
       <div className="mb-4">
-        <DebitCard name="RAHUL SHARMA" balance="₹12,400" balanceLabel="Your available balance" last4="5530" label="Spouse" />
+        <DebitCard name="RAHUL SHARMA" balance="₹37,600" balanceLabel="left this month of ₹50,000" last4="5530" label="Supplementary">
+          <div className="mt-3 mb-2">
+            <LimitBar pct={25} color="#A78BFA" />
+            <div className="flex justify-between text-[9px] opacity-60 mt-1">
+              <span>₹12,400 spent</span>
+              <span>spends from Akash’s account</span>
+            </div>
+          </div>
+        </DebitCard>
       </div>
 
       {/* Two info chips */}
@@ -268,7 +277,7 @@ const A5_Home: React.FC<ScreenProps> = ({ onNext, goTo }) => (
           <span className="text-xl">🏡</span>
           <div className="text-left">
             <div className="text-[9px] opacity-75 font-semibold">Household</div>
-            <div className="text-[11px] font-black">₹34.2k / ₹50k</div>
+            <div className="text-[11px] font-black">₹34.2k / ₹60k</div>
           </div>
         </button>
       </div>
@@ -276,9 +285,9 @@ const A5_Home: React.FC<ScreenProps> = ({ onNext, goTo }) => (
       {/* Quick actions */}
       <div className="grid grid-cols-4 gap-2.5 mb-5">
         {[
-          { icon: '💸', label: 'Send' },
+          { icon: '💸', label: 'Pay' },
           { icon: '🙋', label: 'Request', go: 'adult-request' },
-          { icon: '🧾', label: 'Split', go: 'adult-request' },
+          { icon: '📊', label: 'Spends', go: 'adult-household' },
           { icon: '🏡', label: 'Household', go: 'adult-household' },
         ].map(a => (
           <button key={a.label} onClick={() => a.go && goTo(a.go)}
@@ -302,7 +311,7 @@ const A5_Home: React.FC<ScreenProps> = ({ onNext, goTo }) => (
   </div>
 )
 
-// ─── Screen A6: Shared Household (the spouse-specific value) ──────────────────
+// ─── Screen A6: Shared Household (household spend visibility) ──────────────────
 const A6_Household: React.FC<ScreenProps> = ({ onBack }) => (
   <div className="flex flex-col h-full bg-slate-50 relative">
     <StatusBar />
@@ -314,22 +323,22 @@ const A6_Household: React.FC<ScreenProps> = ({ onBack }) => (
       <div className="rounded-2xl p-4 mb-5 text-white"
         style={{ background: 'linear-gradient(135deg, #4C1D95, #7C3AED)', boxShadow: '0 8px 24px rgba(124,58,237,0.3)' }}>
         <div className="text-[10px] opacity-75 font-semibold uppercase tracking-wider mb-1">Household Spending</div>
-        <div className="text-3xl font-black mb-2">₹34,200 <span className="text-sm opacity-60 font-bold">/ ₹50,000</span></div>
+        <div className="text-3xl font-black mb-2">₹34,200 <span className="text-sm opacity-60 font-bold">/ ₹60,000</span></div>
         <div className="h-1.5 bg-white/20 rounded-full mb-1">
-          <div className="h-full bg-white rounded-full" style={{ width: '68%' }} />
+          <div className="h-full bg-white rounded-full" style={{ width: '57%' }} />
         </div>
         <div className="flex justify-between text-[10px] opacity-75">
-          <span>68% used</span>
-          <span>₹15,800 left this month</span>
+          <span>57% used</span>
+          <span>₹25,800 left this month</span>
         </div>
       </div>
 
-      {/* Contributors */}
-      <SectionLabel>Who's Contributing</SectionLabel>
+      {/* Spend by member */}
+      <SectionLabel>Spending by Member</SectionLabel>
       <div className="bg-white rounded-2xl p-4 shadow-sm mb-5">
         {[
-          { initials: 'P', name: 'Priya Sharma', tag: 'Account holder', amount: '₹21,800', pct: 64, color: 'linear-gradient(135deg, #1B2A6B, #4361EE)' },
-          { initials: 'R', name: 'Rahul Sharma (You)', tag: 'Spouse', amount: '₹12,400', pct: 36, color: 'linear-gradient(135deg, #7C3AED, #4C1D95)' },
+          { initials: 'P', name: 'Akash Sharma', tag: 'Account holder', amount: '₹21,800', pct: 64, color: 'linear-gradient(135deg, #1B2A6B, #4361EE)' },
+          { initials: 'R', name: 'Rahul Sharma (You)', tag: 'Spouse · supplementary card', amount: '₹12,400', pct: 36, color: 'linear-gradient(135deg, #7C3AED, #4C1D95)' },
         ].map(c => (
           <div key={c.name} className="flex items-center gap-3 mb-4 last:mb-0">
             <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-black text-sm flex-shrink-0"
@@ -340,7 +349,7 @@ const A6_Household: React.FC<ScreenProps> = ({ onBack }) => (
                 <span className="text-sm font-black text-slate-900">{c.amount}</span>
               </div>
               <LimitBar pct={c.pct} color={VIOLET} />
-              <div className="text-[10px] text-slate-400 mt-1">{c.tag} · {c.pct}% of household</div>
+              <div className="text-[10px] text-slate-400 mt-1">{c.tag} · {c.pct}% of household spend</div>
             </div>
           </div>
         ))}
@@ -349,8 +358,8 @@ const A6_Household: React.FC<ScreenProps> = ({ onBack }) => (
       {/* Shared categories */}
       <SectionLabel>Shared Expenses</SectionLabel>
       <div className="bg-white rounded-2xl px-4 shadow-sm">
-        <TxnItem icon="🏠" name="Rent" sub="Paid by Priya · 1 Jun" amount="−₹18,000" />
-        <TxnItem icon="🛒" name="Groceries" sub="You + Priya · this month" amount="−₹8,400" />
+        <TxnItem icon="🏠" name="Rent" sub="Akash’s card · 1 Jun" amount="−₹18,000" />
+        <TxnItem icon="🛒" name="Groceries" sub="You + Akash · this month" amount="−₹8,400" />
         <TxnItem icon="💡" name="Utilities" sub="Electricity, water, gas" amount="−₹3,800" />
         <TxnItem icon="🍽️" name="Dining out" sub="Family meals" amount="−₹4,000" />
       </div>
@@ -360,61 +369,62 @@ const A6_Household: React.FC<ScreenProps> = ({ onBack }) => (
   </div>
 )
 
-// ─── Screen A7: Request / Split (peer interaction, not approval) ──────────────
+// ─── Screen A7: Requests & Approvals (User funds / approves) ──────────────────
 const A7_Request: React.FC<ScreenProps> = ({ onBack }) => (
   <div className="flex flex-col h-full bg-slate-50">
     <StatusBar />
-    <NavBar title="Request & Split" onBack={onBack} />
+    <NavBar title="Requests & Approvals" onBack={onBack} />
 
     <div className="flex-1 overflow-y-auto px-4 pb-6">
       <p className="text-xs text-slate-500 mt-1 mb-4">
-        Adults are <strong>peers</strong>, not dependants — request or split, no approval needed.
+        Need more room to spend? Ask Akash to raise your limit or approve a large purchase.
       </p>
 
-      {/* New request card */}
+      {/* Limit increase request */}
       <div className="rounded-2xl p-4 mb-4 text-white"
         style={{ background: 'linear-gradient(135deg, #7C3AED, #4C1D95)' }}>
-        <div className="text-[11px] opacity-80 font-semibold mb-1">Request to top up household pool</div>
+        <div className="text-[11px] opacity-80 font-semibold mb-1">Request a monthly limit increase</div>
         <div className="flex items-end gap-2 mb-3">
-          <span className="text-3xl font-black">₹5,000</span>
-          <span className="text-xs opacity-70 mb-1">for groceries</span>
+          <span className="text-3xl font-black">₹50,000</span>
+          <span className="text-lg font-black opacity-70 mb-0.5">→ ₹65,000</span>
         </div>
         <div className="flex items-center gap-2 bg-white/15 rounded-xl px-3 py-2">
           <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-xs font-black">P</div>
-          <span className="text-sm font-semibold">To: Priya Sharma</span>
+          <span className="text-sm font-semibold">Sent to Akash for approval</span>
           <span className="ml-auto text-[10px] bg-amber-300 text-amber-900 px-2 py-0.5 rounded-full font-bold">⏳ Pending</span>
         </div>
       </div>
 
-      {/* Split a bill */}
-      <div className="bg-white rounded-2xl p-4 shadow-sm mb-4">
-        <div className="text-sm font-bold text-slate-900 mb-2">🧾 Split a bill</div>
-        <div className="flex items-center justify-between py-2 border-b border-slate-100">
-          <span className="text-sm text-slate-600">Barbeque Nation · Dining</span>
-          <span className="text-sm font-bold text-slate-900">₹3,200</span>
+      {/* Transaction needing approval (approval-above-threshold rule) */}
+      <div className="bg-white rounded-2xl p-4 shadow-sm mb-4 border border-amber-200">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-lg">⏳</span>
+          <span className="text-sm font-bold text-slate-900">Purchase awaiting Akash’s approval</span>
         </div>
-        <div className="flex items-center justify-between pt-3">
-          <div className="text-xs text-slate-500">Split 50 / 50 with Priya</div>
-          <button className="text-[12px] font-bold px-3 py-1.5 rounded-xl text-white"
-            style={{ background: VIOLET }}>Send ₹1,600 request</button>
+        <div className="flex items-center justify-between py-2 border-t border-slate-100">
+          <span className="text-sm text-slate-600">Croma · Electronics</span>
+          <span className="text-sm font-bold text-slate-900">₹18,000</span>
+        </div>
+        <div className="text-[10px] text-slate-400 mt-1">
+          Above your ₹10,000 approval limit - Akash gets a notification to approve or decline.
         </div>
       </div>
 
       <SectionLabel>Recent Requests</SectionLabel>
       <div className="bg-white rounded-2xl px-4 shadow-sm">
-        <TxnItem icon="🙋" name="Request to Priya" sub="Today · Groceries · Pending" amount="₹5,000" faded />
-        <TxnItem icon="✅" name="Priya paid you" sub="26 Jun · Rent share" amount="+₹9,000" green />
-        <TxnItem icon="✅" name="Split settled" sub="22 Jun · Movie night" amount="+₹600" green />
+        <TxnItem icon="📈" name="Limit increase → ₹65,000" sub="Today · Pending Akash" amount="₹15,000" faded />
+        <TxnItem icon="✅" name="Croma purchase approved" sub="by Akash · just now" amount="₹18,000" green />
+        <TxnItem icon="✅" name="One-off top-up to limit" sub="26 Jun · by Akash" amount="₹10,000" green />
       </div>
 
       <InfoBox color="blue">
-        💡 Requests are notifications, not blocks. Priya can pay instantly — but your card keeps working regardless.
+        💡 Akash funds and manages this card. He can raise your limits or approve large purchases instantly from his app.
       </InfoBox>
     </div>
   </div>
 )
 
-// ─── Screen A8: Profile (elder-care + joint upgrade paths) ────────────────────
+// ─── Screen A8: Profile (supplementary card + elder-care) ─────────────────────
 const A8_Profile: React.FC<ScreenProps> = ({ onBack }) => (
   <div className="flex flex-col h-full bg-slate-50 relative">
     <StatusBar />
@@ -427,12 +437,12 @@ const A8_Profile: React.FC<ScreenProps> = ({ onBack }) => (
           style={{ background: 'linear-gradient(135deg, #7C3AED, #4C1D95)' }}>R</div>
         <div>
           <div className="text-base font-black text-slate-900">Rahul Sharma</div>
-          <div className="text-[11px] text-slate-400">Spouse · Linked to Priya's household</div>
-          <div className="text-[11px] font-bold text-emerald-600 mt-0.5">✓ Full KYC verified</div>
+          <div className="text-[11px] text-slate-400">Spouse · Supplementary card on Akash’s account</div>
+          <div className="text-[11px] font-bold text-emerald-600 mt-0.5">✓ Identity verified</div>
         </div>
       </div>
 
-      {/* Elder-care upsell — nods to the "parent" persona */}
+      {/* Elder-care upsell - nods to the "parent" persona */}
       <div className="rounded-2xl p-4 mb-4 border"
         style={{ background: '#FFF7ED', borderColor: '#FED7AA' }}>
         <div className="flex items-start gap-3">
@@ -440,7 +450,7 @@ const A8_Profile: React.FC<ScreenProps> = ({ onBack }) => (
           <div>
             <div className="text-sm font-black text-slate-900 mb-0.5">Caring for an elderly parent?</div>
             <div className="text-[11px] text-slate-500 leading-relaxed mb-2.5">
-              Add them as a <strong>Parent / Elder</strong> member — large-text card, scam-alert protection, and you monitor their spends to keep them safe from fraud.
+              Add them as a <strong>Parent / Elder</strong> member - large-text card, scam-alert protection, and you monitor their spends to keep them safe from fraud.
             </div>
             <button className="text-[12px] font-bold px-3 py-1.5 rounded-xl text-white"
               style={{ background: '#EA580C' }}>Set up Elder Care →</button>
@@ -448,13 +458,13 @@ const A8_Profile: React.FC<ScreenProps> = ({ onBack }) => (
         </div>
       </div>
 
-      {/* Joint account upgrade */}
+      {/* Optional physical card (doc: optional physical card) */}
       <div className="bg-white rounded-2xl p-4 shadow-sm mb-4">
         <div className="flex items-center gap-3">
-          <span className="text-2xl">🤝</span>
+          <span className="text-2xl">📮</span>
           <div className="flex-1">
-            <div className="text-sm font-bold text-slate-900">Upgrade to a Joint Account</div>
-            <div className="text-[11px] text-slate-400">Share one balance with Priya · both fully KYC'd</div>
+            <div className="text-sm font-bold text-slate-900">Order a physical card</div>
+            <div className="text-[11px] text-slate-400">Optional · linked to the same supplementary card</div>
           </div>
           <span className="text-slate-300 text-xl">›</span>
         </div>
@@ -463,10 +473,10 @@ const A8_Profile: React.FC<ScreenProps> = ({ onBack }) => (
       <SectionLabel>Settings</SectionLabel>
       <div className="bg-white rounded-2xl px-4 shadow-sm">
         {[
-          { icon: '👁️', label: 'Shared visibility', sub: 'Priya sees shared spends only', val: 'On' },
-          { icon: '⚙️', label: 'My card limits', sub: 'Soft · trust-based', val: 'Edit' },
-          { icon: '🔔', label: 'Notifications', sub: 'Requests, household alerts', val: 'On' },
-          { icon: '🪪', label: 'KYC & documents', sub: 'Aadhaar, PAN verified', val: '✓' },
+          { icon: '🏦', label: 'Funded by', sub: 'Akash’s Optimus account', val: 'Linked' },
+          { icon: '⚙️', label: 'Card limits', sub: 'Set & managed by Akash', val: 'View' },
+          { icon: '👁️', label: 'Monitoring', sub: 'Akash monitors this card', val: 'On' },
+          { icon: '🪪', label: 'Identity & documents', sub: 'Aadhaar, PAN verified', val: '✓' },
         ].map(r => (
           <div key={r.label} className="flex items-center gap-3 py-3 border-b border-slate-100 last:border-0">
             <span className="text-lg w-6">{r.icon}</span>
@@ -486,12 +496,12 @@ const A8_Profile: React.FC<ScreenProps> = ({ onBack }) => (
 
 // ─── Export ───────────────────────────────────────────────────────────────────
 export const adultScreens: Screen[] = [
-  { id: 'adult-invite',    label: 'Household Invite',       component: A1_Invite },
+  { id: 'adult-invite',    label: 'Cardholder Invite',      component: A1_Invite },
   { id: 'adult-welcome',   label: 'Welcome Screen',         component: A2_Welcome },
-  { id: 'adult-kyc',       label: 'Own KYC + PIN',          component: A3_KYC },
+  { id: 'adult-kyc',       label: 'Identity + PIN',         component: A3_KYC },
   { id: 'adult-activated', label: 'Card Activated 🎉',      component: A4_Activated },
   { id: 'adult-home',      label: 'Member Home',            component: A5_Home },
   { id: 'adult-household', label: 'Shared Household',       component: A6_Household },
-  { id: 'adult-request',   label: 'Request & Split',        component: A7_Request },
+  { id: 'adult-request',   label: 'Requests & Approvals',   component: A7_Request },
   { id: 'adult-profile',   label: 'Profile & Elder Care',   component: A8_Profile },
 ]

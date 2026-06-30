@@ -10,7 +10,7 @@ type AppType = 'user' | 'child' | 'adult'
 
 const APPS: { id: AppType; icon: string; label: string; sub: string; journey: string; screens: Screen[] }[] = [
   { id: 'user',  icon: '👨‍👩‍👧', label: 'Main User App',  sub: 'Account Holder App',          journey: 'Account Holder Journey', screens: userScreens },
-  { id: 'child', icon: '👦',     label: 'Children App',    sub: 'Teen / Child (Aarav)',        journey: 'Child Journey',          screens: memberScreens },
+  { id: 'child', icon: '🧒',     label: 'Children App',    sub: 'Child (Aarav)',               journey: 'Child Journey',          screens: memberScreens },
   { id: 'adult', icon: '🧑‍🤝‍🧑', label: 'Family Member',   sub: 'Spouse · Parent (Rahul)',     journey: 'Family Member Journey',  screens: adultScreens },
 ]
 
@@ -36,8 +36,8 @@ export default function Page() {
   return (
     <div className="min-h-screen lg:h-[100dvh] lg:overflow-hidden bg-gradient-to-br from-slate-900 via-[#0f1729] to-slate-900 flex flex-col items-center">
 
-      {/* ── Top bar: brand (far left) · app switcher (top) · author (right) ─ */}
-      <div className="w-full flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 pt-3 pb-2">
+      {/* ── Top bar: brand (far left) · app switcher (top-centre) ─────────── */}
+      <div className="w-full flex flex-wrap items-center gap-x-6 gap-y-3 px-5 pt-3 pb-2">
         {/* Left: brand, pinned to the far-left edge */}
         <div className="flex-shrink-0">
           <div className="flex items-center gap-2">
@@ -46,11 +46,11 @@ export default function Page() {
               Family Hub
             </span>
           </div>
-          <p className="text-slate-400 text-[11px]">Interactive Prototype · Senior PM Case Study</p>
+          <p className="text-slate-400 text-[11px]">Interactive Prototype</p>
         </div>
 
-        {/* Center: app switcher, pulled up into the top bar */}
-        <div className="order-last w-full md:order-none md:w-auto flex flex-wrap justify-center gap-2 bg-white/5 border border-white/10 rounded-2xl p-1.5">
+        {/* Centre: app switcher, pulled up into the top bar */}
+        <div className="order-last w-full md:order-none md:w-auto md:mx-auto flex flex-wrap justify-center gap-2 bg-white/5 border border-white/10 rounded-2xl p-1.5">
           {APPS.map(a => (
             <button key={a.id}
               onClick={() => switchApp(a.id)}
@@ -71,11 +71,6 @@ export default function Page() {
           ))}
         </div>
 
-        {/* Right: author */}
-        <div className="text-right flex-shrink-0">
-          <p className="text-slate-500 text-[10px] font-semibold uppercase tracking-wider">By</p>
-          <p className="text-white text-sm font-bold">Piyush Dinde</p>
-        </div>
       </div>
 
       {/* ── Main layout: screen label + phone + screen list ─────────────── */}
@@ -180,12 +175,6 @@ export default function Page() {
         </div>
       )}
 
-      {/* ── Footer ─────────────────────────────────────────────────────── */}
-      <div className="pb-3 lg:pb-1.5 text-center flex-shrink-0">
-        <p className="text-slate-600 text-[11px]">
-          Optimus · Zeta Senior PM Assignment · 3 apps · 26 interactive screens · Built with Next.js
-        </p>
-      </div>
     </div>
   )
 }

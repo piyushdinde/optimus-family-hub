@@ -15,7 +15,7 @@ const M1_ClaimInvite: React.FC<ScreenProps> = ({ onNext }) => (
     <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
       <div className="text-6xl mb-6">💌</div>
       <h1 className="text-2xl font-black text-white mb-3 leading-tight">
-        Priya Sharma has<br />invited you to join
+        Akash Sharma has<br />invited you to join
       </h1>
       <div className="text-4xl font-black mb-1" style={{ color: '#4361EE', letterSpacing: '-1px' }}>
         Optimus
@@ -27,7 +27,7 @@ const M1_ClaimInvite: React.FC<ScreenProps> = ({ onNext }) => (
       <div className="w-full bg-white/10 border border-white/20 rounded-2xl p-4 mb-6 text-left">
         <div className="text-[10px] text-blue-300 font-bold uppercase tracking-wider mb-3">What you get</div>
         {[
-          { icon: '💳', text: 'Your own virtual debit card' },
+          { icon: '💳', text: 'Your own debit card' },
           { icon: '🔄', text: 'Instant UPI payments · aarav@optimus' },
           { icon: '📊', text: 'Track your own spending' },
           { icon: '🛡️', text: 'Guardian-protected, RBI compliant' },
@@ -60,14 +60,14 @@ const M2_Welcome: React.FC<ScreenProps> = ({ onNext, onBack }) => (
         </div>
         <h1 className="text-3xl font-black text-white mb-2">Welcome,<br />Aarav!</h1>
         <p className="text-blue-300 text-sm leading-relaxed mb-8">
-          Your personal Optimus card is ready to activate. It'll be linked to your mom's account for safety.
+          Your personal Optimus card is ready to activate. It'll be linked to your dad's account for safety.
         </p>
 
         <div className="w-full space-y-3 mb-8">
           {[
             { icon: '💳', title: 'Virtual RuPay card', sub: 'Works everywhere UPI is accepted' },
             { icon: '📱', title: 'Add to Google Pay', sub: 'Tap & pay at any store' },
-            { icon: '🔒', title: 'Spend controls', sub: 'Limits set by Priya to keep you safe' },
+            { icon: '🔒', title: 'Spend controls', sub: 'Limits set by Akash to keep you safe' },
           ].map(f => (
             <div key={f.title}
               className="flex items-center gap-4 bg-white/10 border border-white/10 rounded-2xl p-4 text-left">
@@ -93,7 +93,7 @@ const M3_Pin: React.FC<ScreenProps> = ({ onNext, onBack }) => (
     <NavBar title="Verify Identity" onBack={onBack} />
 
     <div className="flex-1 overflow-y-auto px-4 pb-6">
-      <p className="text-xs text-slate-500 mt-1 mb-5">Your details were pre-filled by Priya (guardian). Please confirm and set your 4-digit PIN.</p>
+      <p className="text-xs text-slate-500 mt-1 mb-5">Your details were pre-filled by Akash (guardian). Please confirm and set your 4-digit PIN.</p>
 
       {/* Pre-filled details */}
       <div className="bg-white rounded-2xl px-4 py-1 shadow-sm mb-4">
@@ -101,7 +101,7 @@ const M3_Pin: React.FC<ScreenProps> = ({ onNext, onBack }) => (
         {[
           { label: 'Name', value: 'Aarav Sharma' },
           { label: 'Date of Birth', value: '15 March 2012 (Age 13)' },
-          { label: 'Guardian', value: 'Priya Sharma' },
+          { label: 'Guardian', value: 'Akash Sharma' },
           { label: 'Mobile', value: '+91 98765 43210' },
         ].map(r => (
           <div key={r.label} className="flex justify-between py-2.5 border-b border-slate-100 last:border-0">
@@ -127,7 +127,7 @@ const M3_Pin: React.FC<ScreenProps> = ({ onNext, onBack }) => (
       </div>
 
       <InfoBox color="blue">
-        🛡️ Your PIN is stored securely on your device and is never shared with Priya or Optimus staff.
+        🛡️ Your PIN is stored securely on your device and is never shared with Akash or Optimus staff.
       </InfoBox>
 
       <div className="mt-5">
@@ -152,7 +152,7 @@ const M4_Activated: React.FC<ScreenProps> = ({ onNext, onBack }) => (
 
       {/* Card display */}
       <div className="mb-5">
-        <DebitCard name="AARAV SHARMA" balance="₹2,000" balanceLabel="Daily limit set by guardian" last4="7291" label="Teen" />
+        <DebitCard name="AARAV SHARMA" balance="₹2,000" balanceLabel="Daily limit set by guardian" last4="7291" label="Child" />
       </div>
 
       {/* UPI chip */}
@@ -171,7 +171,7 @@ const M4_Activated: React.FC<ScreenProps> = ({ onNext, onBack }) => (
           { l: 'Daily spend limit', v: '₹2,000' },
           { l: 'Per transaction', v: '₹500' },
           { l: 'Monthly limit', v: '₹15,000' },
-          { l: 'Set by', v: 'Priya Sharma' },
+          { l: 'Set by', v: 'Akash Sharma' },
         ].map(r => (
           <div key={r.l} className="flex justify-between py-2 border-b border-slate-100 last:border-0 text-sm">
             <span className="text-slate-400">{r.l}</span>
@@ -206,7 +206,7 @@ const M5_MemberHome: React.FC<ScreenProps> = ({ onNext, onBack }) => (
 
       {/* Card with limit bar */}
       <div className="mb-4">
-        <DebitCard name="AARAV SHARMA" balance="₹760" balanceLabel="left today of ₹2,000" last4="7291" label="Teen">
+        <DebitCard name="AARAV SHARMA" balance="₹760" balanceLabel="left today of ₹2,000" last4="7291" label="Child">
           <div className="mt-3 mb-2">
             <LimitBar pct={62} color="#10B981" />
             <div className="flex justify-between text-[9px] opacity-60 mt-1">
@@ -282,12 +282,12 @@ const M6_Declined: React.FC<ScreenProps> = ({ onNext, onBack }) => (
       </div>
 
       <InfoBox color="red">
-        🛡️ <strong>Why was this blocked?</strong> Priya has blocked the <strong>Gaming &amp; In-App</strong> category on your card. Payments to game stores, app credits, and in-app purchases are not allowed.
+        🛡️ <strong>Why was this blocked?</strong> Akash has blocked the <strong>Gaming &amp; In-App</strong> category on your card. Payments to game stores, app credits, and in-app purchases are not allowed.
       </InfoBox>
 
       <div className="bg-white rounded-2xl p-4 mt-4 shadow-sm mb-4">
         <div className="text-sm font-bold text-slate-900 mb-1">Want to unblock gaming?</div>
-        <div className="text-xs text-slate-500 leading-relaxed">Ask Priya to update your category controls in the Family Hub. She can allow gaming for specific days or amounts.</div>
+        <div className="text-xs text-slate-500 leading-relaxed">Ask Akash to update your category controls in the Family Hub. He can allow gaming for specific days or amounts.</div>
       </div>
 
       <div className="mt-2 space-y-2.5">
@@ -305,21 +305,21 @@ const M7_Frozen: React.FC<ScreenProps> = ({ onNext, onBack }) => (
 
     <div className="flex-1 overflow-y-auto px-4 pb-28">
       <div className="mb-5">
-        <DebitCard name="AARAV SHARMA" last4="7291" label="Teen" frozen>
+        <DebitCard name="AARAV SHARMA" last4="7291" label="Child" frozen>
           <div className="text-base font-black text-white mb-1 mt-1">Card Paused</div>
           <div className="text-xs text-white/60 mb-3">Your card has been temporarily paused.</div>
         </DebitCard>
       </div>
 
       <InfoBox color="amber">
-        ❄️ <strong>Your card is paused.</strong> All payments are declined until Priya unpauses it. You can still view your balance and transaction history below.
+        ❄️ <strong>Your card is paused.</strong> All payments are declined until Akash unpauses it. You can still view your balance and transaction history below.
       </InfoBox>
 
       <div className="bg-white rounded-2xl p-4 mt-4 shadow-sm mb-4">
         <div className="text-sm font-bold text-slate-900 mb-1">💬 Need it unpaused?</div>
-        <div className="text-xs text-slate-500 leading-relaxed">Contact Priya to resume your card. She can unpause it instantly from the Family Hub in her Optimus app.</div>
+        <div className="text-xs text-slate-500 leading-relaxed">Contact Akash to resume your card. He can unpause it instantly from the Family Hub in his Optimus app.</div>
         <button className="mt-3 w-full py-2.5 rounded-xl bg-slate-100 text-sm font-bold text-slate-700">
-          📲 Message Priya
+          📲 Message Akash
         </button>
       </div>
 

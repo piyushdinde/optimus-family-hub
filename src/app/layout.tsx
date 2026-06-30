@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Optimus Family Hub — Interactive Prototype',
-  description: 'Product Case Study · Senior PM Assignment · Piyush Dinde',
+  title: 'Optimus Family Hub - Interactive Prototype',
+  description: 'Optimus Family Hub - Interactive Prototype',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
