@@ -47,6 +47,9 @@ export default function Page() {
             </span>
           </div>
           <p className="text-slate-400 text-[11px]">Interactive Prototype</p>
+          <a href="/discovery" className="inline-block mt-1 text-[11px] font-bold text-[#8aa0ff] hover:text-white transition-colors">
+            View 7 discovery hooks →
+          </a>
         </div>
 
         {/* Centre: app switcher, pulled up into the top bar */}
