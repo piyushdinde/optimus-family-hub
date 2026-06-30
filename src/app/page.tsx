@@ -34,12 +34,13 @@ export default function Page() {
   const props: ScreenProps = { onNext: next, onBack: back, goTo }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#0f1729] to-slate-900 flex flex-col items-center">
+    <div className="min-h-screen lg:h-[100dvh] lg:overflow-hidden bg-gradient-to-br from-slate-900 via-[#0f1729] to-slate-900 flex flex-col items-center">
 
-      {/* ── Header ─────────────────────────────────────────────────────── */}
-      <div className="w-full max-w-4xl flex items-center justify-between px-6 pt-6 pb-2">
-        <div>
-          <div className="flex items-center gap-2 mb-0.5">
+      {/* ── Top bar: brand (far left) · app switcher (top) · author (right) ─ */}
+      <div className="w-full flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 pt-3 pb-2">
+        {/* Left: brand, pinned to the far-left edge */}
+        <div className="flex-shrink-0">
+          <div className="flex items-center gap-2">
             <span className="text-white font-black text-xl tracking-tight">Optimus</span>
             <span className="text-[11px] font-bold px-2 py-0.5 rounded-full text-white/70 border border-white/20">
               Family Hub
@@ -47,39 +48,41 @@ export default function Page() {
           </div>
           <p className="text-slate-400 text-[11px]">Interactive Prototype · Senior PM Case Study</p>
         </div>
-        <div className="text-right">
+
+        {/* Center: app switcher, pulled up into the top bar */}
+        <div className="order-last w-full md:order-none md:w-auto flex flex-wrap justify-center gap-2 bg-white/5 border border-white/10 rounded-2xl p-1.5">
+          {APPS.map(a => (
+            <button key={a.id}
+              onClick={() => switchApp(a.id)}
+              className={`px-4 py-1.5 rounded-xl text-left transition-all ${
+                app === a.id ? 'bg-white shadow-lg' : 'hover:bg-white/5'
+              }`}>
+              <div className={`flex items-center gap-1.5 text-[13px] font-bold ${
+                app === a.id ? 'text-slate-900' : 'text-slate-300'
+              }`}>
+                <span>{a.icon}</span>{a.label}
+              </div>
+              <div className={`text-[10px] font-medium ${
+                app === a.id ? 'text-slate-400' : 'text-slate-500'
+              }`}>
+                {a.sub}
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Right: author */}
+        <div className="text-right flex-shrink-0">
           <p className="text-slate-500 text-[10px] font-semibold uppercase tracking-wider">By</p>
           <p className="text-white text-sm font-bold">Piyush Dinde</p>
         </div>
       </div>
 
-      {/* ── App Switcher ────────────────────────────────────────────────── */}
-      <div className="flex flex-wrap justify-center gap-2 mt-3 mb-4 bg-white/5 border border-white/10 rounded-2xl p-1.5">
-        {APPS.map(a => (
-          <button key={a.id}
-            onClick={() => switchApp(a.id)}
-            className={`px-4 py-2 rounded-xl text-left transition-all ${
-              app === a.id ? 'bg-white shadow-lg' : 'hover:bg-white/5'
-            }`}>
-            <div className={`flex items-center gap-1.5 text-[13px] font-bold ${
-              app === a.id ? 'text-slate-900' : 'text-slate-300'
-            }`}>
-              <span>{a.icon}</span>{a.label}
-            </div>
-            <div className={`text-[10px] font-medium ${
-              app === a.id ? 'text-slate-400' : 'text-slate-500'
-            }`}>
-              {a.sub}
-            </div>
-          </button>
-        ))}
-      </div>
-
       {/* ── Main layout: screen label + phone + screen list ─────────────── */}
-      <div className="flex items-start gap-6 pb-8 px-4">
+      <div className="flex items-start justify-center gap-6 px-4 mt-1 pb-6 lg:pb-0 lg:flex-1 lg:min-h-0 w-full">
 
         {/* Left: nav column */}
-        <div className="hidden lg:flex flex-col gap-1.5 w-48 pt-6 flex-shrink-0">
+        <div className="hidden lg:flex flex-col gap-1 w-48 pt-1 flex-shrink-0 self-center max-h-full overflow-y-auto">
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2 px-2">
             {current.journey}
           </p>
@@ -98,7 +101,7 @@ export default function Page() {
         </div>
 
         {/* Centre: phone */}
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-3 lg:h-full lg:justify-center lg:gap-2">
           {/* Screen label */}
           <div className="flex items-center gap-2">
             <span className="text-[10px] text-slate-500 font-semibold">
@@ -107,9 +110,19 @@ export default function Page() {
             <span className="text-[13px] font-bold text-white">{screens[idx].label}</span>
           </div>
 
-          <PhoneFrame>
-            <CurrentScreen {...props} />
-          </PhoneFrame>
+          {/* Height-responsive scaler: shrinks the 740px frame so the whole
+              phone fits in the first fold on short laptops (e.g. 13" MacBook Air).
+              Negative bottom margin compensates the scaled-away layout box so the
+              dot-nav flows right under the visual phone. */}
+          <div className="origin-top transition-transform
+            lg:[@media(max-height:900px)]:scale-[0.9]  lg:[@media(max-height:900px)]:-mb-[74px]
+            lg:[@media(max-height:840px)]:scale-[0.82] lg:[@media(max-height:840px)]:-mb-[133px]
+            lg:[@media(max-height:780px)]:scale-[0.74] lg:[@media(max-height:780px)]:-mb-[192px]
+            lg:[@media(max-height:700px)]:scale-[0.66] lg:[@media(max-height:700px)]:-mb-[252px]">
+            <PhoneFrame>
+              <CurrentScreen {...props} />
+            </PhoneFrame>
+          </div>
 
           {/* Dot nav */}
           <div className="flex items-center gap-3">
@@ -168,7 +181,7 @@ export default function Page() {
       )}
 
       {/* ── Footer ─────────────────────────────────────────────────────── */}
-      <div className="pb-6 text-center">
+      <div className="pb-3 lg:pb-1.5 text-center flex-shrink-0">
         <p className="text-slate-600 text-[11px]">
           Optimus · Zeta Senior PM Assignment · 3 apps · 26 interactive screens · Built with Next.js
         </p>
